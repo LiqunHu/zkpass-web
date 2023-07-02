@@ -1,95 +1,81 @@
+'use client'
 import Image from 'next/image'
-import styles from './page.module.css'
+import s from './page.module.css'
+import { Form, Select } from 'antd'
+import { useEffect, useState } from 'react'
+import { getCodeList } from 'country-list'
+import Button from '@/components/Button'
+
+const categoryOptions = [
+  {
+    value: 'bank',
+    label: 'bank'
+  },
+  {
+    value: 'game',
+    label: 'game'
+  }
+]
+const countries = getCodeList()
+const countryOptions = Object.keys(countries).map((key) => ({
+  value: key,
+  label: countries[key]
+}))
 
 export default function Home() {
+  const [selectedCountry, setSelectedCountry] = useState<string[]>([])
+  const [selectedCategory, setSelectedCategory] = useState<string[]>([])
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <div className={s.main}>
+      <form className={s.search}>
+        <input
+          type="text"
+          name="domain"
+          autoComplete="off"
+          placeholder="domain.com"
+          pattern="^(?:[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.)?[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$"
+          required
+          className={s.input}
+        />
+        <button type="submit" className={s.enter}>
+          Entry
+        </button>
+      </form>
+      <div>
+        <Select
+          placeholder="Country"
+          value={selectedCountry}
+          onChange={setSelectedCountry}
+          className={s.selectc}
+          options={countryOptions}
+          allowClear={true}
+        />
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+        <Select
+          placeholder="Category"
+          value={selectedCategory}
+          onChange={setSelectedCategory}
+          className={s.selectcg}
+          options={categoryOptions}
+          allowClear={true}
         />
       </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      <div className={s.container}>
+        <div className={s.task_grid}>
+          <div className={s.card}>
+            <div className={s.card_body}>
+              <h2 className={s.title}>http://www.ccb.com</h2>
+              <p className={s.line}>US</p>
+              <p className={s.line}>11</p>
+              <p className={s.line}>22</p>
+              <p className={s.line}>33</p>
+              <Button variant="slim" type="button" className={s.submit}>
+                Submit
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
-    </main>
+    </div>
   )
 }
