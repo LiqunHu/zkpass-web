@@ -1,0 +1,12 @@
+.selectContainer {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  justify-content: center;
+}
+.select {
+  width: 200px;
+}
+.select:last-child {
+  margin-left: 20px;
+}

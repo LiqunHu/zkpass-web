@@ -1,38 +1,34 @@
 'use client'
-import s from './page.module.css'
-import { Button, Select } from 'antd'
+import style from './page.module.css'
+import { Button, Select, Row, Col } from 'antd'
 import { useEffect, useState } from 'react'
-import { getCodeList } from 'country-list'
 import request from '@/lib/request'
+import { initTasks } from './mock'
+import TaskCard from '../components/TaskCard/index'
+import CountrySelect from '../components/CountrySelect/index'
+import Search from '../components/Search/index'
 
-const categoryOptions = [
-  {
-    value: 'bank',
-    label: 'bank'
-  },
-  {
-    value: 'game',
-    label: 'game'
-  }
-]
-const countries = getCodeList()
-const countryOptions = Object.keys(countries).map((key) => ({
-  value: key,
-  label: countries[key]
-}))
+function CardList({ taskList }) {
+  return (
+    <Row gutter={16}>
+      {taskList.map((task, index) => (
+        <Col span={6} key={index} style={{ marginTop: '1rem' }}>
+          <TaskCard task={task} />
+        </Col>
+      ))}
+    </Row>
+  )
+}
 
 export default function Home() {
-  const [selectedCountry, setSelectedCountry] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('')
-  const [tasks, setTasks] = useState<Array<any>>([])
-
+  const [tasks, setTasks] = useState<Array<any>>(initTasks)
   const getTaskList = async () => {
     try {
       const response = await request.post(
         '/v1/api/zkpass/dashboard/getTaskList',
         {
-          sbt_task_country_code: selectedCountry,
-          sbt_task_category: selectedCategory,
+          sbt_task_country_code: 'selectedCountry',
+          sbt_task_category: 'selectedCategory',
           search_text: '',
           limit: 6,
           offset: 0
@@ -45,65 +41,18 @@ export default function Home() {
     }
   }
 
-  useEffect(() => {
-    getTaskList()
-  }, [])
+  // useEffect(() => {
+  //   getTaskList()
+  // }, [])
+  function handleSearch(val) {
+    console.log(val)
+  }
 
   return (
-    <div className={s.main}>
-      <form className={s.search}>
-        <input
-          type="text"
-          name="domain"
-          autoComplete="off"
-          placeholder="domain.com"
-          pattern="^(?:[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.)?[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$"
-          required
-          className={s.input}
-        />
-        <button type="submit" className={s.enter}>
-          Entry
-        </button>
-      </form>
-      <div>
-        <Select
-          placeholder="Country"
-          value={selectedCountry}
-          onChange={setSelectedCountry}
-          className={s.selectc}
-          options={countryOptions}
-          allowClear={true}
-        />
-
-        <Select
-          placeholder="Category"
-          value={selectedCategory}
-          onChange={setSelectedCategory}
-          className={s.selectcg}
-          options={categoryOptions}
-          allowClear={true}
-        />
-      </div>
-      <div className={s.container}>
-        <div className={s.task_grid}>
-          {tasks.map((task) => {
-            return (
-              <div className={s.card} key={task.sbt_task_id}>
-                <div className={s.card_body}>
-                  <h2 className={s.title}>{task.sbt_task_url}</h2>
-                  <p className={s.line}>{task.sbt_task_country_code}</p>
-                  <p className={s.line}>{task.sbt_task_category}</p>
-                  <p className={s.line}>{task.sbt_task_requirements}</p>
-                  <p className={s.line}>{task.sbt_task_reward}</p>
-                  <Button size="middle" className={s.submit}>
-                    Submit
-                  </Button>
-                </div>
-              </div>
-            )
-          })}
-        </div>
-      </div>
+    <div className={style.main}>
+      <Search handleSearch={handleSearch} />
+      <CountrySelect />
+      <CardList taskList={tasks} />
     </div>
   )
 }
