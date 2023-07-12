@@ -114,10 +114,8 @@ export default function Account() {
           {Object.keys(userInfo).length !== 0 && (
             <>
               <Dropdown menu={{ items }}>
-                <button
-                  className={s.launch}
-                >
-                  {userInfo.address.slice(0, 5) + '...'}
+                <button className={s.launch}>
+                  {userInfo.address ? userInfo.address.slice(0, 5) + '...' : ''}
                 </button>
               </Dropdown>
               <button className={s.launch} onClick={disconnectWallet}>
