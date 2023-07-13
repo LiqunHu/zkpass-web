@@ -1,7 +1,7 @@
 import style from './index.module.css'
 import { Button } from 'antd'
 
-export default function TaskCard({ task }) {
+export default function TaskCard({ task }: any) {
   return (
     <div className={style.cardContainer}>
       <div className={style.cell}>
