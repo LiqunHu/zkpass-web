@@ -8,10 +8,10 @@ import TaskCard from '../components/TaskCard/index'
 import CountrySelect from '../components/CountrySelect/index'
 import Search from '../components/Search/index'
 
-function CardList({ taskList }) {
+function CardList({ taskList }: any) {
   return (
     <Row gutter={16}>
-      {taskList.map((task, index) => (
+      {taskList.map((task: any, index: any) => (
         <Col span={6} key={index} style={{ marginTop: '1rem' }}>
           <TaskCard task={task} />
         </Col>
@@ -44,7 +44,7 @@ export default function Home() {
   // useEffect(() => {
   //   getTaskList()
   // }, [])
-  function handleSearch(val) {
+  function handleSearch(val: any) {
     console.log(val)
   }
 

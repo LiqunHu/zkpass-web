@@ -13,7 +13,7 @@ request.interceptors.request.use(
   function (config) {
     let token = window.localStorage.getItem('token')
     if (typeof token === 'string') {
-      config.headers['Authorization'] = 'Bearer ' + token
+      config.headers['Authorization'] = token
     }
     // config.headers["Authorization"] = 'WEB_66b8fbf0bf0d11e99da725679125a355_0028ddb1b01310b97935f55f8a3d0c80_1578057391186_ab8fc5956322107ab73cadfabf93b0410e1b7ea1';
     return config
