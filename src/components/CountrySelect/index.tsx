@@ -19,23 +19,31 @@ const countryOptions = Object.keys(countries).map((key) => ({
   label: countries[key]
 }))
 
-export default function CountrySelect() {
-  const [selectedCountry, setSelectedCountry] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('')
+const obj: any = {
+  country: null,
+  category: null
+}
+export default function CountrySelect({ handleChange }) {
+  function countryChange(val: any) {
+    obj.country = val
+    handleChange(obj)
+  }
+  function CategoryChange(val: any) {
+    obj.category = val
+    handleChange(obj)
+  }
   return (
     <div className={style.selectContainer}>
       <Select
         placeholder="Please select country"
-        value={selectedCountry}
-        onChange={setSelectedCountry}
+        onChange={(v: any) => countryChange(v)}
         className={style.select}
         options={countryOptions}
         allowClear={true}
       />
       <Select
         placeholder="Please select Category"
-        value={selectedCategory}
-        onChange={setSelectedCategory}
+        onChange={(v: any) => CategoryChange(v)}
         className={style.select}
         options={categoryOptions}
         allowClear={true}

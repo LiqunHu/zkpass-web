@@ -1,9 +1,8 @@
 'use client'
 import style from './page.module.css'
-import { Button, Select, Row, Col } from 'antd'
+import { Row, Col, message } from 'antd'
 import { useEffect, useState } from 'react'
 import request from '@/lib/request'
-import { initTasks } from './mock'
 import TaskCard from '../components/TaskCard/index'
 import CountrySelect from '../components/CountrySelect/index'
 import Search from '../components/Search/index'
@@ -30,24 +29,27 @@ function CardList({ taskList }: any) {
   )
 }
 
+let params: any = {}
+
 export default function Home() {
   const [tasks, setTasks] = useState<Array<any>>([])
+  const [messageApi, contextHolder] = message.useMessage()
   const getTaskList = async () => {
     try {
       const response = await request.post(
         '/v1/api/zkpass/dashboard/getTaskList',
         {
-          sbt_task_country_code: '',
-          sbt_task_category: '',
-          search_text: '',
+          ...params,
           limit: 6,
           offset: 0
         }
       )
-      console.log(response.data.info.rows)
       setTasks([...response.data.info.rows])
     } catch (error) {
-      console.error(error)
+      messageApi.open({
+        type: 'error',
+        content: 'inter error'
+      })
     }
   }
 
@@ -60,8 +62,17 @@ export default function Home() {
         url: val
       })
     } else {
-      alert('Please login')
+      messageApi.open({
+        type: 'warning',
+        content: 'Please login'
+      })
     }
+  }
+
+  function CountryChange(obj: any) {
+    params.sbt_task_country_code = obj.country
+    params.sbt_task_country_code = obj.category
+    getTaskList()
   }
 
   useEffect(() => {
@@ -69,10 +80,13 @@ export default function Home() {
   }, [])
 
   return (
-    <div className={style.main}>
-      <Search handleSearch={handleSearch} />
-      <CountrySelect />
-      <CardList taskList={tasks} />
-    </div>
+    <>
+      {contextHolder}
+      <div className={style.main}>
+        <Search handleSearch={handleSearch} />
+        <CountrySelect handleChange={CountryChange} />
+        <CardList taskList={tasks} />
+      </div>
+    </>
   )
 }

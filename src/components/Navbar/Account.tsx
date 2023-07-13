@@ -8,6 +8,9 @@ import request from '@/lib/request'
 import { ReduxState, login, logout } from '@/lib/redux'
 import type { MenuProps } from 'antd'
 import { Dropdown, Space } from 'antd'
+import Image from 'next/image'
+import logo from '*.svg'
+import Link from 'next/link'
 
 const providerOptions = {
   /* See Provider Options Section */
@@ -17,13 +20,9 @@ const items: MenuProps['items'] = [
   {
     key: '1',
     label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.antgroup.com"
-      >
-        1st menu item
-      </a>
+      <Link href="/mySubmission">
+        My submission
+      </Link>
     )
   },
   {
