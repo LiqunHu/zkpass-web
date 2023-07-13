@@ -2,7 +2,7 @@ import style from './index.module.css'
 import { Button } from 'antd'
 import { useState } from 'react'
 
-export default function Search({ handleSearch }) {
+export default function Search({ handleSearch }: any) {
   const [searchText, setSearchText] = useState('')
   return (
     <form className={style.container}>
