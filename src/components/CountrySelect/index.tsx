@@ -1,3 +1,4 @@
+'use client'
 import { Select } from 'antd'
 import style from './index.module.css'
 import { useState } from 'react'
@@ -23,7 +24,7 @@ const obj: any = {
   country: null,
   category: null
 }
-export default function CountrySelect({ handleChange }) {
+export default function CountrySelect({ handleChange }: any) {
   function countryChange(val: any) {
     obj.country = val
     handleChange(obj)

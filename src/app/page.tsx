@@ -55,6 +55,7 @@ export default function Home() {
 
   function handleSearch(val: any) {
     let token = window.localStorage.getItem('token')
+    console.log(3333)
     if (token) {
       openExtension('ZKPASS_EXTENSION', {
         method: 'POPUP',
