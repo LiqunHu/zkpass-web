@@ -10,10 +10,7 @@ export default function Search({ handleSearch }: any) {
         <input
           type="text"
           name="domain"
-          autoComplete="off"
           placeholder="domain.com"
-          pattern="^(?:[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.)?[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$"
-          required
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
           className={style.input}
