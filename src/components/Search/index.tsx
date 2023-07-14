@@ -5,7 +5,7 @@ import { useState } from 'react'
 export default function Search({ handleSearch }: any) {
   const [searchText, setSearchText] = useState('')
   return (
-    <form className={style.container}>
+    <div className={style.container}>
       <div className={style.search}>
         <input
           type="text"
@@ -25,6 +25,6 @@ export default function Search({ handleSearch }: any) {
           Entry
         </button>
       </div>
-    </form>
+    </div>
   )
 }
