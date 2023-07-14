@@ -19,7 +19,6 @@ export default function Search({ handleSearch }: any) {
           className={style.input}
         />
         <button
-          type="submit"
           className={style.enter}
           onClick={() => handleSearch(searchText)}
         >
