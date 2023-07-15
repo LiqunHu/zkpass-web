@@ -13,3 +13,8 @@
   font-size: 0.875rem;
   color: #ccc;
 }
+.btnBox {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}

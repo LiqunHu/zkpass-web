@@ -1,7 +1,7 @@
 import style from './index.module.css'
 import { Button } from 'antd'
 
-export default function TaskCard({ task }: any) {
+export default function TaskCard({ task, handleClick }: any) {
   return (
     <div className={style.cardContainer}>
       <div className={style.cell}>
@@ -24,9 +24,14 @@ export default function TaskCard({ task }: any) {
         <div>Reward:</div>
         <div>{task.sbt_task_reward}</div>
       </div>
-      {/*<Button size="middle">*/}
-      {/*  Submit*/}
-      {/*</Button>*/}
+      <div className={style.btnBox}>
+        <Button
+          size="small"
+          onClick={() => handleClick(task)}
+        >
+          Submit
+        </Button>
+      </div>
     </div>
   )
 }

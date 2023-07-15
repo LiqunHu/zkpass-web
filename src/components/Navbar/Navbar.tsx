@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import Account from './Account'
+import { UserOutlined } from '@ant-design/icons';
+
 
 // import Account from './Account';
 import logo from 'public/img/zkPass.svg'

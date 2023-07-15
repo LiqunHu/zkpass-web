@@ -69,3 +69,14 @@
     rgb(128, 240, 180) 100%
   );
 }
+.avatarBox {
+  display: flex;
+  align-items: center;
+}
+.avatar {
+  margin-right: 8px;
+  background: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -17,12 +17,12 @@ const openExtension = (type: string, doc: any) => {
   )
 }
 
-function CardList({ taskList }: any) {
+function CardList({ taskList, handleClick }: any) {
   return (
     <Row gutter={16}>
       {taskList.map((task: any, index: any) => (
         <Col span={6} key={index} style={{ marginTop: '1rem' }}>
-          <TaskCard task={task} />
+          <TaskCard task={task} handleClick={(v: any) => handleClick(v)} />
         </Col>
       ))}
     </Row>
@@ -71,8 +71,8 @@ export default function Home() {
   }
 
   function CountryChange(obj: any) {
-    params.sbt_task_country_code = obj.country
-    params.sbt_task_country_code = obj.category
+    params.sbt_task_country_code = obj.country || undefined
+    params.sbt_task_category_code = obj.category || undefined
     getTaskList()
   }
 
@@ -86,7 +86,10 @@ export default function Home() {
       <div className={style.main}>
         <Search handleSearch={handleSearch} />
         <CountrySelect handleChange={CountryChange} />
-        <CardList taskList={tasks} />
+        <CardList
+          taskList={tasks}
+          handleClick={(v: any) => handleSearch(v.sbt_task_url)}
+        />
       </div>
     </>
   )

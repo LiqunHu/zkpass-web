@@ -7,10 +7,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import request from '@/lib/request'
 import { ReduxState, login, logout } from '@/lib/redux'
 import type { MenuProps } from 'antd'
-import { Dropdown, Space } from 'antd'
+import { Dropdown, Space, Avatar, Popover } from 'antd'
 import Image from 'next/image'
 import logo from '*.svg'
 import Link from 'next/link'
+import { UserOutlined } from '@ant-design/icons'
 
 const providerOptions = {
   /* See Provider Options Section */
@@ -19,37 +20,11 @@ const providerOptions = {
 const items: MenuProps['items'] = [
   {
     key: '1',
-    label: (
-      <Link href="/mySubmission">
-        My submission
-      </Link>
-    )
+    label: <Link href="/mySubmission">My submission</Link>
   },
   {
     key: '2',
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.aliyun.com"
-      >
-        2nd menu item (disabled)
-      </a>
-    ),
-    disabled: true
-  },
-  {
-    key: '3',
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.luohanacademy.com"
-      >
-        3rd menu item (disabled)
-      </a>
-    ),
-    disabled: true
+    label: <div>disconnectWallet</div>
   }
 ]
 
@@ -101,6 +76,12 @@ export default function Account() {
     dispatch(logout())
   }
 
+  const handleMenuClick = (item: any) => {
+    if (item.key === 2) {
+      disconnectWallet()
+    }
+  }
+
   return (
     <>
       {isClient ? (
@@ -112,14 +93,20 @@ export default function Account() {
           )}
           {Object.keys(userInfo).length !== 0 && (
             <>
-              <Dropdown menu={{ items }}>
-                <button className={s.launch}>
-                  {userInfo.address ? userInfo.address.slice(0, 5) + '...' : ''}
-                </button>
-              </Dropdown>
-              <button className={s.launch} onClick={disconnectWallet}>
-                Disconnect
-              </button>
+              <div className={s.avatarBox}>
+                <Avatar
+                  size="large"
+                  className={s.avatar}
+                  icon={<UserOutlined />}
+                />
+                <Dropdown menu={{ items, onClick: handleMenuClick }}>
+                  <div style={{ color: '#fff' }}>
+                    {userInfo.address
+                      ? 'welcome ' + userInfo.address.slice(0, 5) + '...'
+                      : ''}
+                  </div>
+                </Dropdown>
+              </div>
             </>
           )}
         </>
