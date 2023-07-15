@@ -1,3 +1,4 @@
+'use client'
 import request from '@/lib/request'
 import { useEffect, useState } from 'react'
 import { Row, Col, message } from 'antd'
