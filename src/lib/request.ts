@@ -55,6 +55,7 @@ const errorHandle = (status: number, msg: string) => {
   // 状态码判断
   switch (status) {
     case 401:
+      window.localStorage.clear()
       message.error(msg || `请先登录`)
       break
     case 403:
