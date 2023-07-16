@@ -70,7 +70,9 @@ export default function Account() {
   }
 
   const disconnectWallet = async () => {
-    await web3Modal.clearCachedProvider()
+    if (web3Modal) {
+      await web3Modal.clearCachedProvider()
+    }
     dispatch(logout())
   }
 
