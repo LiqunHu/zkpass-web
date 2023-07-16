@@ -36,7 +36,7 @@ export default function MySubmission() {
     getRecords()
   }, [page])
 
-  function pageChange(page) {
+  function pageChange(page: number) {
     setPage(page)
   }
 
@@ -84,16 +84,11 @@ export default function MySubmission() {
           dataIndex="sbt_submit_api_data"
           key="sbt_submit_api_data"
           render={(val: any) => {
-            const array = JSON.parse(val)
-            if (array?.length > 0) {
-              return array.map((v, index) => {
-                return (
-                  <ReactJson src={v.request} collapsed={true} key={index} />
-                )
-              })
-            } else {
-              return ''
-            }
+            return val.map((v:any, index: number) => {
+              return (
+                <ReactJson src={v.request} collapsed={true} key={index} />
+              )
+            })
           }}
         />
       </Table>

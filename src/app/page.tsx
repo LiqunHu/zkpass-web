@@ -59,7 +59,7 @@ export default function Home() {
     if (token) {
       openExtension('ZKPASS_EXTENSION', {
         method: 'POPUP',
-        token: token,
+        token: JSON.parse(token),
         url: val
       })
     } else {
