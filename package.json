@@ -22,6 +22,12 @@
     "web3": "1.7.4",
     "web3modal": "^1.9.9"
   },
+  "overrides": {
+    "react-json-view": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    }
+  },
   "devDependencies": {
     "@types/country-list": "^2.1.1",
     "@types/node": "20.3.3",
