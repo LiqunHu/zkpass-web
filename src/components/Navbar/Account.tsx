@@ -94,12 +94,12 @@ export default function Account() {
           {Object.keys(userInfo).length !== 0 && (
             <>
               <div className={s.avatarBox}>
-                <Avatar
-                  size="large"
-                  className={s.avatar}
-                  icon={<UserOutlined />}
-                />
                 <Dropdown menu={{ items, onClick: handleMenuClick }}>
+                  <Avatar
+                    size="large"
+                    className={s.avatar}
+                    icon={<UserOutlined />}
+                  />
                   <div style={{ color: '#fff' }}>
                     {userInfo.address
                       ? 'welcome ' + userInfo.address.slice(0, 5) + '...'
