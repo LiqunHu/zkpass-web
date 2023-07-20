@@ -88,7 +88,7 @@ export default function Home() {
         <CountrySelect handleChange={CountryChange} />
         <CardList
           taskList={tasks}
-          handleClick={(v: any) => handleSearch(v.sbt_task_url)}
+          handleClick={(v: any) => handleSearch(v.sbt_task_domain)}
         />
       </div>
     </>

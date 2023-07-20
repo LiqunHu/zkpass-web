@@ -14,7 +14,7 @@ export default function TaskCard({ task, handleClick }: any) {
       </div>
       <div className={style.cell}>
         <div>Url:</div>
-        <div>{task.sbt_task_url}</div>
+        <div>{task.sbt_task_domain}</div>
       </div>
       <div className={style.cell}>
         <div>Requirements:</div>
