@@ -86,7 +86,7 @@ export default function MySubmission() {
           render={(val: any) => {
             return val.map((v:any, index: number) => {
               return (
-                <ReactJson src={v.request} collapsed={true} key={index} />
+                <ReactJson src={v} collapsed={true} key={index} />
               )
             })
           }}
