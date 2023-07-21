@@ -101,7 +101,12 @@ export default function Account() {
                 <Dropdown menu={{ items, onClick: handleMenuClick }}>
                   <div style={{ color: '#fff' }}>
                     {userInfo.address
-                      ? 'welcome ' + userInfo.address.slice(0, 5) + '...'
+                      ? userInfo.address.slice(0, 5) +
+                        '...' +
+                        userInfo.address.slice(
+                          userInfo.address.length - 4,
+                          userInfo.address.length
+                        )
                       : '...'}
                   </div>
                 </Dropdown>

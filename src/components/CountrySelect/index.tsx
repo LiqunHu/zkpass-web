@@ -56,6 +56,7 @@ export default function CountrySelect({ handleChange }: any) {
         className={style.select}
         options={countryOptions}
         allowClear={true}
+        showSearch
       />
       <Select
         placeholder="Please select Category"
