@@ -19,7 +19,7 @@ const openExtension = (type: string, doc: any) => {
 
 function CardList({ taskList, handleClick }: any) {
   return (
-    <Row gutter={16}>
+    <Row gutter={16} style={{ width: '100%' }}>
       {taskList.map((task: any, index: any) => (
         <Col span={6} key={index} style={{ marginTop: '1rem' }}>
           <TaskCard task={task} handleClick={(v: any) => handleClick(v)} />
@@ -84,6 +84,14 @@ export default function Home() {
     <>
       {contextHolder}
       <div className={style.main}>
+        <h1 className={style.title}>zkPass Template Kit</h1>
+        <text className={style.desc}>
+          The template tool is a client tool developed to expand more and more
+          valuable data sources. Users can easily provide the desensitized data
+          structure through this tool, and the zkPass protocol will perform
+          zero-knowledge processing on the valuable private data in the
+          structure.
+        </text>
         <Search handleSearch={handleSearch} />
         <CountrySelect handleChange={CountryChange} />
         <CardList
