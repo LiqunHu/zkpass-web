@@ -44,7 +44,6 @@ export default function Account() {
       await web3Modal.toggleModal()
       const web3 = new Web3(provider)
       const accounts = await web3.eth.getAccounts()
-      console.log(accounts)
       // const signature = await web3.eth.sign('personal sign', accounts[0])
       const signature: any = await window.ethereum.request({
         method: 'personal_sign',

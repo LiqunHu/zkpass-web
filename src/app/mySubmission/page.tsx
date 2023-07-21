@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { message, Table } from 'antd'
 const ReactJson = dynamic(import('react-json-view'), { ssr: false })
 
-const pageSize = 10
+const pageSize = 3
 
 const columns = [
   {
