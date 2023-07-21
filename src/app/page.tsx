@@ -72,12 +72,13 @@ export default function Home() {
 
   function CountryChange(obj: any) {
     params.sbt_task_country_code = obj.country || undefined
-    params.sbt_task_category_code = obj.category || undefined
+    params.sbt_task_category = obj.category || undefined
     getTaskList()
   }
 
   useEffect(() => {
     getTaskList()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

@@ -3,7 +3,7 @@ import { message } from 'antd'
 
 // axios
 let axiosConfig = {
-  timeout: 50000, // request timeout
+  timeout: 50000 // request timeout
 }
 
 const request = axios.create(axiosConfig)
@@ -11,11 +11,13 @@ const request = axios.create(axiosConfig)
 // Add a request interceptor
 request.interceptors.request.use(
   function (config) {
-    let token = window.localStorage.getItem('token')
-    if (typeof token === 'string') {
-      config.headers['Authorization'] = JSON.parse(token)
+    if (typeof window === 'object') {
+      let token = window.localStorage.getItem('token')
+      if (typeof token === 'string') {
+        config.headers['Authorization'] = JSON.parse(token)
+      }
+      // config.headers["Authorization"] = 'WEB_66b8fbf0bf0d11e99da725679125a355_0028ddb1b01310b97935f55f8a3d0c80_1578057391186_ab8fc5956322107ab73cadfabf93b0410e1b7ea1';
     }
-    // config.headers["Authorization"] = 'WEB_66b8fbf0bf0d11e99da725679125a355_0028ddb1b01310b97935f55f8a3d0c80_1578057391186_ab8fc5956322107ab73cadfabf93b0410e1b7ea1';
     return config
   },
   function (error) {
@@ -55,7 +57,9 @@ const errorHandle = (status: number, msg: string) => {
   // 状态码判断
   switch (status) {
     case 401:
-      window.localStorage.clear()
+      if (typeof window === 'object') {
+        window.localStorage.clear()
+      }
       message.error(msg || `请先登录`)
       break
     case 403:
@@ -65,13 +69,13 @@ const errorHandle = (status: number, msg: string) => {
       message.error(`请求的资源不存在`)
       break
     case 500:
-      message.error(`服务器内部错误`,)
+      message.error(`服务器内部错误`)
       break
     case 700:
       message.error(msg || '未知错误,请刷新重试')
       break
     default:
-      message.error( `未知错误`)
+      message.error(`未知错误`)
   }
 }
 
