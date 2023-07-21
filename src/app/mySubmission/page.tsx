@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { message, Table } from 'antd'
 const ReactJson = dynamic(import('react-json-view'), { ssr: false })
 
-const pageSize = 3
+const pageSize = 5
 
 const columns = [
   {
@@ -37,10 +37,11 @@ const columns = [
     title: 'Data',
     dataIndex: 'sbt_submit_api_data',
     key: 'sbt_submit_api_data',
-    render: (_text: any, record: any) =>
-      record.sbt_submit_api_data.map((v: any, index: number) => {
+    render: (_text: any, record: any) => {
+      return record.sbt_submit_api_data.map((v: any, index: number) => {
         return <ReactJson src={v} collapsed={true} key={index} />
       })
+    }
   }
 ]
 
