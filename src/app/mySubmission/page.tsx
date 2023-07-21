@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import request from '@/lib/request'
 import { useEffect, useState } from 'react'
 import { message, Table } from 'antd'
-const ReactJson = dynamic(import('react-json-view'), { ssr: false })
+const ReactJson = dynamic(() => import('react-json-view'), { ssr: false })
 
 const pageSize = 5
 
@@ -38,6 +38,7 @@ const columns = [
     dataIndex: 'sbt_submit_api_data',
     key: 'sbt_submit_api_data',
     render: (_text: any, record: any) => {
+      console.log(record)
       return record.sbt_submit_api_data.map((v: any, index: number) => {
         return <ReactJson src={v} collapsed={true} key={index} />
       })
