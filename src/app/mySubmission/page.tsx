@@ -38,7 +38,6 @@ const columns = [
     dataIndex: 'sbt_submit_api_data',
     key: 'sbt_submit_api_data',
     render: (_text: any, record: any) => {
-      console.log(record)
       return record.sbt_submit_api_data.map((v: any, index: number) => {
         return <ReactJson src={v} collapsed={true} key={index} />
       })
