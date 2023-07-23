@@ -39,7 +39,7 @@ const columns = [
     key: 'sbt_submit_api_data',
     render: (_text: any, record: any) => {
       return record.sbt_submit_api_data.map((v: any, index: number) => {
-        return <ReactJson src={v} collapsed={true} key={index} />
+        return <ReactJson src={v} collapsed={true} key={index} displayDataTypes={false} />
       })
     }
   }
