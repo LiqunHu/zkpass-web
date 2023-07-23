@@ -1,5 +1,6 @@
 'use client'
 import s from './Navbar.module.css'
+import dayjs from 'dayjs'
 import Web3 from 'web3'
 import Web3Modal from 'web3modal'
 import { useEffect, useState } from 'react'
@@ -45,14 +46,20 @@ export default function Account() {
       const web3 = new Web3(provider)
       const accounts = await web3.eth.getAccounts()
       // const signature = await web3.eth.sign('personal sign', accounts[0])
+      let now = dayjs()
       const signature: any = await window.ethereum.request({
         method: 'personal_sign',
-        params: ['join zpkass', accounts[0]]
+        params: [`Welcome to zkPass
+        By connecting your wallet and using zkPass, you agree to our Terms of Service and Privacy Policy.
+${now.format('HH:mm MM-DD')}`, accounts[0]]
       })
+
+      
 
       const response = await request.post('/v1/api/auth/signinByAccount', {
         address: accounts[0],
         signature: signature,
+        timestamp: now.millisecond(),
         login_type: 'wallet'
       })
       // const response = await request.post('/v1/api/auth/signinByAccount', {
