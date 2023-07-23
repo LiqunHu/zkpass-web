@@ -50,7 +50,7 @@ export default function Account() {
       const signature: any = await window.ethereum.request({
         method: 'personal_sign',
         params: [`Welcome to zkPass
-        By connecting your wallet and using zkPass, you agree to our Terms of Service and Privacy Policy.
+By connecting your wallet and using zkPass, you agree to our Terms of Service and Privacy Policy.
 ${now.format('HH:mm MM-DD')}`, accounts[0]]
       })
 
