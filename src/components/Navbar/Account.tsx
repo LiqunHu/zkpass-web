@@ -54,12 +54,10 @@ export default function Account() {
 ${now.format('HH:mm MM-DD')}`, accounts[0]]
       })
 
-      
-
       const response = await request.post('/v1/api/auth/signinByAccount', {
         address: accounts[0],
         signature: signature,
-        timestamp: now.millisecond(),
+        timestamp: now.valueOf(),
         login_type: 'wallet'
       })
       // const response = await request.post('/v1/api/auth/signinByAccount', {
